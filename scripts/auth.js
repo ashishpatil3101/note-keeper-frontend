@@ -1,3 +1,5 @@
+const BASE_URl = "http://localhost:5000/api";
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
@@ -10,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             try {
-                const response = await fetch('http://localhost:5000/api/auth/login', {
+                const response = await fetch(`${BASE_URl}/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             try {
-                const response = await fetch('http://localhost:5000/api/auth/register', {
+                const response = await fetch(`${BASE_URl}/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function logoutUser() {
-        const response = await fetch(`http://localhost:5000/api/auth/logout`, {
+        const response = await fetch(`${BASE_URl}/auth/logout`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}` // Add token to the request headers

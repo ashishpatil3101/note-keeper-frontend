@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost:5000/api";
+
 const menuButton = document.querySelector('.menu-button');
 const sidebar = document.querySelector('#sidebar');
 const addNoteButton = document.querySelector('.add-note-button');
@@ -84,7 +86,7 @@ addNoteForm.addEventListener('submit', async (event) => {
   const labels = document.getElementById('labels').value.split(',');
   const reminderDate = document.getElementById('reminder-date').value;
   try {
-    const response = await fetch('http://localhost:5000/api/notes', {
+    const response = await fetch(BASE_URL +'/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -130,11 +132,11 @@ document.addEventListener('click', async (event) => {
     if (currentFilter === 'trash') {
       const successMessage = `Note deleted successfully!`;
       const errorMessage = `Failed to delete note. Please try again later.`;
-      await handleAction(`http://localhost:5000/api/notes/delete/${noteId}`, successMessage, errorMessage, 'DELETE');
+      await handleAction(`${BASE_URL}/notes/delete/${noteId}`, successMessage, errorMessage, 'DELETE');
     } else {
       const successMessage = `Note moved to trash successfully!`;
       const errorMessage = `Failed to move note to trash. Please try again later.`;
-      await handleAction(`http://localhost:5000/api/notes/trash/${noteId}`, successMessage, errorMessage);
+      await handleAction(`${BASE_URL}/notes/trash/${noteId}`, successMessage, errorMessage);
     }
   }
 });
@@ -145,7 +147,7 @@ document.addEventListener('click', async (event) => {
     const noteId = button.dataset.noteId;
     const successMessage = currentFilter === 'archive' ? `Note unarchived successfully!` : `Note archived successfully!`;
     const errorMessage = currentFilter === 'archive' ? `Failed to unarchive note. Please try again later.` : `Failed to archive note. Please try again later.`;
-    await handleAction(`http://localhost:5000/api/notes/archive/${noteId}`, successMessage, errorMessage);
+    await handleAction(`${BASE_URL}/notes/archive/${noteId}`, successMessage, errorMessage);
   }
 });
 
@@ -181,17 +183,17 @@ async function fetchNotes(filter = 'all', query = '') {
     let endpoint;
 
     if (filter === 'trash') {
-      endpoint = `http://localhost:5000/api/notes/true/false`;
+      endpoint = `${BASE_URL}/notes/true/false`;
     } else if (filter === 'archive') {
-      endpoint = 'http://localhost:5000/api/notes/false/true';
+      endpoint = `${BASE_URL}/notes/false/true`;
     } else if (filter === 'search') {
-      endpoint = `http://localhost:5000/api/notes/search?query=${query}`;
+      endpoint = `${BASE_URL}/notes/search?query=${query}`;
     } else if (filter === 'label') {
-      endpoint = `http://localhost:5000/api/notes/false/false/${query}`;
+      endpoint = `${BASE_URL}/notes/false/false/${query}`;
     } else if (filter === 'reminder') {
-      endpoint = 'http://localhost:5000/api/notes/reminders';
+      endpoint = `${BASE_URL}/notes/reminders`;
     } else {
-      endpoint = 'http://localhost:5000/api/notes/false/false';
+      endpoint = `${BASE_URL}/notes/false/false`;
     }
     
     console.log(endpoint)
@@ -266,7 +268,7 @@ function renderNotes(notes, query) {
 
 async function updateNoteColor(noteId, color) {
   try {
-    const response = await fetch(`http://localhost:5000/api/notes/color/${noteId}`, {
+    const response = await fetch(`${BASE_URL}/notes/color/${noteId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -286,7 +288,7 @@ async function updateNoteColor(noteId, color) {
 
 async function fetchLabels() {
   try {
-    const response = await fetch('http://localhost:5000/api/notes/labels', {
+    const response = await fetch(`${BASE_URL}/notes/labels`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}` // Add token to the request headers
       }
@@ -342,7 +344,7 @@ document.addEventListener('click', async (event) => {
 
 async function deleteLabel(labelId) {
   try {
-    const response = await fetch(`http://localhost:5000/api/notes/labels/${labelId}`, {
+    const response = await fetch(`${BASE_URL}/notes/labels/${labelId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}` // Add token to the request headers
