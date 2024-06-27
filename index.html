@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Keeper</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu-button">☰</div>
+        <div class="title">Vaibhav Keeper</div>
+        <div class="search-area">
+            <input type="text" id="search-input" placeholder="Search notes...">
+            <button id="search-button">Search</button>
+        </div>
+        <button class="logout-button" id="logout-button">Logout</button>
+    </header>
+
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu" id="sidebar-menu">
+            <li><a href="#" class="add-note-button">Add Note</a></li>
+            <li><a href="#" class="all-notes-button">Notes</a></li>
+            <li><a href="#" class="upcoming-reminders-button">Reminders</a></li>
+            <li><a href="#" class="archive-button">Archive</a></li>
+            <li><a href="#" id="trash-button">Trash</a></li>
+            <!-- Dynamic labels will be inserted here -->
+        </ul>
+    </aside>
+
+
+
+    <main class="main-content">
+        <!-- Add Note Section -->
+        <div class="add-note-section" id="add-note-section">
+            <h2>Add Note</h2>
+            <form id="add-note-form">
+                <input type="text" id="title" placeholder="Add Title" required>
+                <textarea id="text" rows="4" placeholder="Add Description" required></textarea>
+                <div class="input-group">
+                    <input type="text" id="tags" placeholder="Add Tags (comma-separated)">
+                    <input type="text" id="labels" placeholder="Add Labels (comma-separated)">
+                </div>
+                <div class="input-group second-grp">
+                    <input type="color" id="color" value="#ffffff" title="Choose Background Color">
+                    <input type="date" id="reminder-date" name="reminderDate" placeholder="Choose a Date">
+                </div>
+                <button type="submit" class="save-button" id="save-button">Save</button>
+            </form>
+        </div>
+
+        <!-- All Notes Section -->
+        <div class="all-notes-section" id="all-notes-section">
+            <h2 class="view-header">All Notes</h2>
+            <div class="notes-container" id="notes-container">
+                <!-- Notes will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Modal structure -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div id="modal-message">Some text in the Modal..</div>
+                <div class="close">&times;</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+
+</html>

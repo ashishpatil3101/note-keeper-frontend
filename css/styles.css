@@ -1,0 +1,444 @@
+/* Reset and Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu-button {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.search-area {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  flex: 1;
+  max-width: 600px;
+}
+
+.search-area input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-area button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-area button:hover {
+  background-color: #0056b3;
+}
+
+.logout-button {
+  background-color: #ff4c4c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: auto;
+}
+
+.logout-button:hover {
+  background-color: #e04444;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 900;
+  overflow-y: auto;
+  max-height: calc(100vh); 
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #333333;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 250px; /* Ensure content doesn't overlap sidebar */
+  padding: 20px;
+}
+
+/* Add Note Section Styles */
+.add-note-section {
+  display: none;
+  position: fixed;
+  top: calc(100px + 20px); /* Adjust based on header height and padding */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px; /* Adjust the maximum width as needed */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.add-note-section.visible {
+  padding: 0;
+  display: block;
+}
+
+.add-note-section h2 {
+  font-size: 20px; /* Adjust font size as needed */
+  margin-bottom: 15px;
+  text-align: center; /* Center align the heading */
+}
+
+.add-note-section form {
+  display: grid;
+  gap: 10px;
+  padding: 10px; /* Add padding to the form */
+}
+
+.add-note-section input[type="text"],
+.add-note-section textarea,
+.add-note-section input[type="color"] {
+  width: calc(100% - 20px); /* Adjust the width to consider padding */
+  padding: 10px;
+  margin: 5px 0; /* Add margin to create space between inputs */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px; /* Adjust font size as needed */
+}
+
+
+
+.add-note-section .input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.add-note-section .input-group input {
+  width: 50%; /* Adjust width as needed */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-note-section .input-group input[type="color"] {
+  padding: 0;
+  border: none;
+  width: 40px;
+  height: 40px; /* Adjust height to match input fields */
+}
+
+.add-note-section input[type="color"] {
+  padding: 0;
+  border-style: none;
+  width: calc(100%);
+  height: 15px; /* Match the height of other input fields */
+}
+
+.add-note-section .save-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px; /* Adjust font size as needed */
+  transition: background-color 0.3s ease;
+}
+
+.add-note-section .save-button:hover {
+  background-color: #45a049;
+}
+
+#reminder-date {
+  /* padding: 0; */
+}
+/* Sidebar Labels */
+
+/* #labels-section {
+  max-height: calc(100vh - 180px); 
+  overflow-y: auto;
+} */
+
+.sidebar-label {
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  /* transition: background-color 0.3s ease, color 0.3s ease; */
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+.label-head {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.sidebar-label:hover {
+  background-color: #f0f0f0;
+}
+
+/* Delete Label Button */
+.delete-label-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* color: #dc3545; */
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.delete-label-button:hover {
+  color: #bf2e3b;
+}
+
+
+
+/* Modal container */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: absolute;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 50%;
+  max-width: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.close {
+  color: #aaa;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Notes Section Styles */
+/* .all-notes-section {
+  margin-top: 20px;
+} */
+
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 20px; */
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+
+
+/* Note Styles */
+
+.note {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 190px;
+  margin: 10px;
+  position: relative;
+}
+
+
+
+.note-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.note-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  flex-grow: 1;
+}
+
+
+
+.note-tags, .note-labels {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.note-label {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.label-item {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items to the center */
+  margin-top: 10px;
+}
+
+.note-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.note-color-picker-wrapper {
+  display: flex;
+  align-items: center; /* Align items to the center */
+  position: relative;
+}
+
+.note-color-picker {
+  width: 24px;
+  height: 24px;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  position: relative;
+}
+
+.note-color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.note-color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+.note-color-picker-icon {
+  font-family: 'Remixicon';
+  font-size: 24px;
+  color: #333;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.second-grp {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+
+}
+.add-note-section .input-group input[type="color"] {
+  padding: 0;
+  border: none;
+  width: 40px;
+  height: 43px; /* Match the height to date-time input field */
+}
+
+.add-note-section .input-group input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  /* height: 10px; Ensure the height matches the color picker */
+}
+
+
+.note-reminder {
+  font-size: 10px;
+}
