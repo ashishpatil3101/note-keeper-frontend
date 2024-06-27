@@ -136,7 +136,7 @@ document.addEventListener('click', async (event) => {
     } else {
       const successMessage = `Note moved to trash successfully!`;
       const errorMessage = `Failed to move note to trash. Please try again later.`;
-      await handleAction(`${BASE_URL}/notes/trash/${noteId}`, successMessage, errorMessage);
+      await handleAction(`${BASE_URL}/notes/toggle-trash/${noteId}`, successMessage, errorMessage, 'POST');
     }
   }
 });
@@ -213,8 +213,9 @@ async function fetchNotes(filter = 'all', query = '') {
   }
 }
 
+
 function renderNotes(notes, query) {
-  console.log(notes)
+  console.log(notes);
   notesContainer.innerHTML = '';
   updateViewHeader(query);
   notes.forEach(note => {
@@ -230,12 +231,21 @@ function renderNotes(notes, query) {
       </div>
       ${note.reminder ? `<div class="note-reminder">Reminder: ${new Date(note.reminder).toLocaleDateString()}</div>` : ''}
       <div class="note-actions">
-        <button class="move-to-trash-button" data-note-id="${note._id}">
-          <i class="ri-delete-bin-4-line"></i>
-        </button>
-        ${currentFilter !== 'trash' ? `<button class="note-archive-button" data-note-id="${note._id}">
-          <i class="ri-inbox-archive-line"></i>
-        </button>` : ''}
+        ${currentFilter === 'trash' ? `
+          <button class="restore-note-button" data-note-id="${note._id}">
+            <i class="ri-restart-line" style="color: green;"></i>
+          </button>
+          <button class="delete-note-button" data-note-id="${note._id}">
+            <i class="ri-delete-bin-4-line" style="color: red;"></i>
+          </button>
+        ` : `
+          <button class="move-to-trash-button" data-note-id="${note._id}">
+            <i class="ri-delete-bin-4-line"></i>
+          </button>
+          <button class="note-archive-button" data-note-id="${note._id}">
+            <i class="ri-inbox-archive-line"></i>
+          </button>
+        `}
         <div class="note-color-picker-wrapper">
           <input type="color" class="note-color-picker" data-note-id="${note._id}" value="${note.color}">
           <span class="note-color-picker-icon ri-palette-line"></span>
@@ -265,6 +275,7 @@ function renderNotes(notes, query) {
     });
   });
 }
+
 
 async function updateNoteColor(noteId, color) {
   try {
@@ -397,5 +408,24 @@ document.addEventListener('click', async (event) => {
     const label = event.target.closest('.sidebar-label').textContent.trim();
     hideAddNoteSection();
     await fetchNotes('label', label);
+  }
+});
+
+
+document.addEventListener('click', async (event) => {
+  if (event.target.closest('.restore-note-button')) {
+    const button = event.target.closest('.restore-note-button');
+    const noteId = button.dataset.noteId;
+    const successMessage = `Note restored successfully!`;
+    const errorMessage = `Failed to restore note. Please try again later.`;
+    await handleAction(`${BASE_URL}/notes/toggle-trash/${noteId}`, successMessage, errorMessage, 'POST');
+  }
+
+  if (event.target.closest('.delete-note-button')) {
+    const button = event.target.closest('.delete-note-button');
+    const noteId = button.dataset.noteId;
+    const successMessage = `Note deleted permanently!`;
+    const errorMessage = `Failed to delete note. Please try again later.`;
+    await handleAction(`${BASE_URL}/notes/delete/${noteId}`, successMessage, errorMessage, 'DELETE');
   }
 });
