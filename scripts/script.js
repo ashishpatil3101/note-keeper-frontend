@@ -86,7 +86,7 @@ addNoteForm.addEventListener('submit', async (event) => {
   const labels = document.getElementById('labels').value.split(',');
   const reminderDate = document.getElementById('reminder-date').value;
   try {
-    const response = await fetch(BASE_URL +'/notes', {
+    const response = await fetch(BASE_URL + '/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,11 +98,10 @@ addNoteForm.addEventListener('submit', async (event) => {
     const savedNote = await handleFetchResponse(response);
     if (savedNote) {
       addNoteForm.reset();
-      addNoteSection.classList.remove('visible');
-      allNotesSection.style.display = 'block';
       showModal('Note saved successfully!');
-      // await fetchNotes('all');
-      await fetchLabels()
+      // Refetch labels to ensure any new labels are included in the sidebar
+      await fetchLabels();
+      // await fetchNotes(currentFilter);
     }
   } catch (error) {
     console.error('Error saving note:', error);
