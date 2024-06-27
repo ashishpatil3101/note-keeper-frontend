@@ -48,7 +48,11 @@
                     <input type="text" id="labels" placeholder="Add Labels (comma-separated)">
                 </div>
                 <div class="input-group second-grp">
-                    <input type="color" id="color" value="#ffffff" title="Choose Background Color">
+                    <div class="note-color-picker-wrapper-form">
+                        <input type="color" class="note-color-picker-form" id="color" data-note-id="${note._id}" value="#ffffff">
+                        <span class="note-color-picker-icon ri-palette-line"></span>
+                      </div>
+                    <!-- <input type="color" id="color" value="#ffffff" title="Choose Background Color"> -->
                     <input type="date" id="reminder-date" name="reminderDate" placeholder="Choose a Date">
                 </div>
                 <button type="submit" class="save-button" id="save-button">Save</button>
