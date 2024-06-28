@@ -37,3 +37,8 @@ To run this project locally, follow these steps:
 2. **Open the application:**
    ```bash
    http://localhost:3000
+
+
+2. **IMPORTANT api integration:**
+   ```bash
+   for integrating api change BASE_URL  from auth.js and  script.js if you have different backend url
