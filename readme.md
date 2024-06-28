@@ -1,3 +1,6 @@
+
+## Deployed link - [click here](https://note-keeper-pink.vercel.app/index.html)
+
 # Note-Taking Application
 
 This project is a simple note-taking application built with HTML, CSS, and JavaScript, served using Node.js.
