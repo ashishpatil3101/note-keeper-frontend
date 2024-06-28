@@ -1,4 +1,4 @@
-const BASE_URl = "http://localhost:5000/api";
+const BASE_URl ="https://note-keeper-server.onrender.com/api"; // "http://localhost:5000/api";
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');

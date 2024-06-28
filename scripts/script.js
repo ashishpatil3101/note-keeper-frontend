@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL ="https://note-keeper-server.onrender.com/api"; // "http://localhost:5000/api";
 
 const menuButton = document.querySelector('.menu-button');
 const sidebar = document.querySelector('#sidebar');
