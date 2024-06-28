@@ -330,6 +330,9 @@ body {
   margin-bottom: 10px;
 }
 
+.note-reminder {
+  font-size: 12px;
+}
 .note-label {
   cursor: pointer;
   color: #007bff;
